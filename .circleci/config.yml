@@ -51,7 +51,6 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker:
-          docker_layer_caching: true
       # - add_ssh_keys:
       #     fingerprints:
       #       - "5a:b6:f5:b3:d8:92:b0:c2:e1:ac:8d:d6:ed:90:42:e0"
