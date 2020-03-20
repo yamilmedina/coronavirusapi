@@ -15,11 +15,11 @@ docker-unit-test:
 	openjdk:8u242-slim ./gradlew test $(ARG)
 
 docker-build-image:
-	docker image build -t coronavirus-api -f Dockerfile .
+	docker build -t dokku/coronavirus-api:latest -f Dockerfile .
 
 docker-run: docker-assemble docker-build-image
 	docker container run 							\
 		-p 8080:8080 \
 		-p 5005:5005 \
-		-e JAVA_OPTS="-Xdebug -Xrunjdwp:transport=dt_socket,address=5005,server=y,suspend=n -Dspring.profiles.active=prod"	\
-		coronavirus-api
+		-e JAVA_OPTS="-Xdebug -Xrunjdwp:transport=dt_socket,address=5005,server=y,suspend=n"	\
+		dokku/coronavirus-api
