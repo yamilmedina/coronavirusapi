@@ -44,15 +44,17 @@ jobs:
   deploy:
     docker:
       # specify the version you desire here
-      - image: circleci/openjdk:8-jdk
+      - image: docker:17.05.0-ce-git
 
     working_directory: ~/repo
 
     steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
       # - add_ssh_keys:
       #     fingerprints:
       #       - "5a:b6:f5:b3:d8:92:b0:c2:e1:ac:8d:d6:ed:90:42:e0"
-      - checkout
       #      - run:
       #          name: Add Dokku to known_hosts
       #          command: |
