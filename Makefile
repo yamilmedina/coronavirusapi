@@ -4,7 +4,7 @@ docker-assemble:
 	-v ${HOME}/.gradle:/root/.gradle \
 	-v ${PWD}:/home/gradle/project      \
 	-w /home/gradle/project     \
-    openjdk:8u242-slim ./gradlew assemble $(ARG)
+    openjdk:11-slim ./gradlew assemble $(ARG)
 
 docker-unit-test:
 	docker run --rm       \
@@ -12,7 +12,7 @@ docker-unit-test:
 	-v ${HOME}/.gradle:/root/.gradle \
 	-v ${PWD}:/home/gradle/project      \
 	-w /home/gradle/project     \
-	openjdk:8u242-slim ./gradlew test $(ARG)
+	openjdk:11-slim ./gradlew test $(ARG)
 
 docker-build-image:
 	docker build -t coronavirus-api:latest -f Dockerfile .

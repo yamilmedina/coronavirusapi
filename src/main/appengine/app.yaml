@@ -1,0 +1,8 @@
+runtime: java11
+env: standard
+instance_class: B4
+
+manual_scaling:
+  instances: 2
+
+service: default
