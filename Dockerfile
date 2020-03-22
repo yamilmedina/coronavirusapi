@@ -1,4 +1,4 @@
-FROM openjdk:8u242-slim
+FROM openjdk:11-slim
 
 COPY ./build/libs/coronavirusapi-0.0.1-SNAPSHOT.jar /usr/app/app.jar
 WORKDIR /usr/app
