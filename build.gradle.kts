@@ -1,3 +1,4 @@
+import com.google.cloud.tools.gradle.appengine.appyaml.AppEngineAppYamlExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 buildscript {
@@ -58,5 +59,12 @@ tasks.withType<KotlinCompile> {
     kotlinOptions {
         freeCompilerArgs = listOf("-Xjsr305=strict")
         jvmTarget = "11"
+    }
+}
+
+the<AppEngineAppYamlExtension>().apply {
+    deploy {
+        version = "GCLOUD_CONFIG"
+        projectId = "GCLOUD_CONFIG"
     }
 }

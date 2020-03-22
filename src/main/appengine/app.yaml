@@ -6,3 +6,5 @@ manual_scaling:
   instances: 2
 
 service: default
+
+entrypoint: java -noverify -jar coronavirusapi-0.0.1-SNAPSHOT.war
