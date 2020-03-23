@@ -23,3 +23,7 @@ docker-run: docker-assemble docker-build-image
 		-p 5005:5005 \
 		-e JAVA_OPTS="-Xdebug -Xrunjdwp:transport=dt_socket,address=5005,server=y,suspend=n"	\
 		coronavirus-api
+
+gae-deploy:
+	./gradlew appengineDeploy
+
