@@ -34,3 +34,16 @@ jobs:
           gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
 
       - run: make gae-deploy
+
+workflows:
+  version: 2
+
+  build-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
