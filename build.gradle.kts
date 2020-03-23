@@ -64,6 +64,8 @@ tasks.withType<KotlinCompile> {
 
 the<AppEngineAppYamlExtension>().apply {
     deploy {
+        stopPreviousVersion = true
+        promote = true
         version = "GCLOUD_CONFIG"
         projectId = "GCLOUD_CONFIG"
     }
