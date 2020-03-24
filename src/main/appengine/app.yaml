@@ -7,4 +7,4 @@ manual_scaling:
 
 service: default
 
-entrypoint: java -noverify -jar coronavirusapi-0.0.1-SNAPSHOT.war
+entrypoint: java -noverify -jar coronavirusapi*.war

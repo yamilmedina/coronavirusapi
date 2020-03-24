@@ -27,3 +27,6 @@ docker-run: docker-assemble docker-build-image
 gae-deploy:
 	./gradlew appengineDeploy
 
+gae-deploy-ci:
+	gradle appengineDeploy
+
