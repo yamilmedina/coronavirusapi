@@ -35,7 +35,7 @@ jobs:
 
       - checkout
 
-      - run: make gae-deploy-ci
+      - run: make gae-deploy
 
 workflows:
   version: 2
