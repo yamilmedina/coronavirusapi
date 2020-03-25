@@ -16,8 +16,13 @@ class MinsalDataScraper @Autowired constructor() {
 
         val data: MutableList<CovidDataSet> = mutableListOf()
         for ((index, it) in response.select(CONTENT_TABLE).select(TABLE_WITH_DATA).first().select(ROW_DATA).withIndex()) {
-            if (index > 2) {
-                data.add(CovidDataSet(it.children()[0].text(), it.children()[1].text(), it.children()[2].text()))
+            if (index in 3..17) {
+                data.add(CovidDataSet(
+                        it.child(REGION_INDEX).text(),
+                        it.child(NEW_CASES_INDEX).text(),
+                        it.child(TOTAL_CASES_INDEX).text(),
+                        it.child(DEATHS_INDEX).text())
+                )
             }
         }
         logger.debug("All data -> $data")
@@ -28,6 +33,11 @@ class MinsalDataScraper @Autowired constructor() {
         const val CONTENT_TABLE = "div[class$=contenido]"
         const val TABLE_WITH_DATA = "table"
         const val ROW_DATA = "tr"
+
+        const val REGION_INDEX = 0
+        const val NEW_CASES_INDEX = 1
+        const val TOTAL_CASES_INDEX = 2
+        const val DEATHS_INDEX = 4
     }
 
 }
