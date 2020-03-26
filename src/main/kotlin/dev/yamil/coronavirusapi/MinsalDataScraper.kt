@@ -16,7 +16,7 @@ class MinsalDataScraper @Autowired constructor() {
 
         val data: MutableList<CovidDataSet> = mutableListOf()
         for ((index, it) in response.select(CONTENT_TABLE).select(TABLE_WITH_DATA).first().select(ROW_DATA).withIndex()) {
-            if (index in 3..17) {
+            if (index in 3..18) {
                 data.add(CovidDataSet(
                         it.child(REGION_INDEX).text(),
                         it.child(NEW_CASES_INDEX).text(),

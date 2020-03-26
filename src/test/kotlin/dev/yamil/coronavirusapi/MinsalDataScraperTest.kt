@@ -10,10 +10,10 @@ class MinsalDataScraperTest {
 
     @Test
     fun `It scrapes correctly data for all regions`() {
-        val list = scraper.fetchNewData()
-        list.forEach {
-            assertTrue(REGIONS.contains(it.region))
-        }
+        val list = scraper.fetchNewData().map { it.region }
+        val diff = REGIONS.subtract(list)
+
+        assertTrue(diff.isEmpty())
     }
 
     @Test
