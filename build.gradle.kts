@@ -8,7 +8,7 @@ buildscript {
 }
 
 plugins {
-    id("org.springframework.boot") version "2.2.5.RELEASE"
+    id("org.springframework.boot") version "2.1.12.RELEASE"
     id("io.spring.dependency-management") version "1.0.9.RELEASE"
     kotlin("jvm") version "1.3.61"
     kotlin("plugin.spring") version "1.3.61"
@@ -17,11 +17,18 @@ plugins {
 
 apply {
     plugin("com.google.cloud.tools.appengine")
+    plugin("io.spring.dependency-management")
 }
 
 group = "dev.yamil"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_11
+
+dependencyManagement {
+    imports {
+        mavenBom("org.springframework.cloud:spring-cloud-dependencies:Greenwich.SR5")
+    }
+}
 
 repositories {
     mavenCentral()
@@ -29,10 +36,11 @@ repositories {
     maven {
         setUrl("https://plugins.gradle.org/m2/")
     }
+    maven { setUrl("https://repo.spring.io/libs-milestone") }
 }
 
 dependencies {
-    //implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
+    implementation("org.springframework.cloud:spring-cloud-gcp-starter-data-datastore")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-web") {
         exclude(group = "org.springframework.boot", module = "spring-boot-starter-tomcat")

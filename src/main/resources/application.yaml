@@ -1,0 +1,18 @@
+# general context configuration
+server:
+  servlet:
+    context-path: /api/v1
+  connectionTimeout: 25000ms
+
+# logging
+logging:
+  level:
+    org.springframework.web: WARN
+    org.springframework.data: DEBUG
+    org: INFO
+
+# actuator
+management:
+  endpoint:
+    health:
+      enabled: true
