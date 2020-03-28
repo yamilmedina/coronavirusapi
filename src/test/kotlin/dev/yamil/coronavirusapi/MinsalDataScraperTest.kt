@@ -1,8 +1,8 @@
 package dev.yamil.coronavirusapi
 
+import org.junit.jupiter.api.Assertions.assertDoesNotThrow
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertDoesNotThrow
 
 class MinsalDataScraperTest {
 

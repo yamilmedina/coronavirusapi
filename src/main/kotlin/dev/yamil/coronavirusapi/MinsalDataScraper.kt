@@ -19,9 +19,9 @@ class MinsalDataScraper @Autowired constructor() {
             if (index in 3..18) {
                 data.add(CovidDataSet(
                         it.child(REGION_INDEX).text(),
-                        it.child(NEW_CASES_INDEX).text(),
-                        it.child(TOTAL_CASES_INDEX).text(),
-                        it.child(DEATHS_INDEX).text())
+                        it.child(NEW_CASES_INDEX).textNumeric(),
+                        it.child(TOTAL_CASES_INDEX).textNumeric(),
+                        it.child(DEATHS_INDEX).textNumeric())
                 )
             }
         }
