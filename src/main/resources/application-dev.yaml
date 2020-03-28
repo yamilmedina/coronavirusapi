@@ -1,0 +1,16 @@
+# dev profile settings
+
+# gcp datastore
+spring:
+  cloud:
+    gcp:
+      datastore:
+        project-id: ${PROJECT_ID}
+
+# actuator
+management:
+  endpoint:
+    health:
+      enabled: true
+    metrics:
+      enabled: true
