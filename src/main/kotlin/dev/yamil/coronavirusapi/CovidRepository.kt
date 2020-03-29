@@ -4,4 +4,12 @@ import org.springframework.cloud.gcp.data.datastore.repository.DatastoreReposito
 import org.springframework.stereotype.Repository
 
 @Repository
-interface CovidRepository : DatastoreRepository<CovidDataSet, String>
+interface CovidRepository : DatastoreRepository<CovidDataSet, String> {
+
+    fun findAllByOrderByDateDesc(): List<CovidDataSet>
+
+    fun findByDateEqualsOrderByDateDesc(date: String): List<CovidDataSet>
+
+    fun existsByDateEquals(date: String): Boolean
+
+}

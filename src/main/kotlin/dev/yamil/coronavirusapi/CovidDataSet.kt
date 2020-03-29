@@ -13,6 +13,6 @@ data class CovidDataSet(
         val deaths: Long) {
 
     @get:Id
-    val id: String = DigestUtils.md5DigestAsHex((date + region).toByteArray())
+    var id: String = DigestUtils.md5DigestAsHex((date + region).toByteArray())
 
 }
