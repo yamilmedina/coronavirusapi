@@ -5,6 +5,7 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
+import java.time.LocalDate
 
 @Component
 class MinsalDataScraper @Autowired constructor() {
@@ -14,14 +15,15 @@ class MinsalDataScraper @Autowired constructor() {
     fun fetchNewData(): List<CovidDataSet> {
         val response = Jsoup.connect("https://www.minsal.cl/nuevo-coronavirus-2019-ncov/casos-confirmados-en-chile-covid-19/").get()
 
+        val now = LocalDate.now()
         val data: MutableList<CovidDataSet> = mutableListOf()
         for ((index, it) in response.select(CONTENT_TABLE).select(TABLE_WITH_DATA).first().select(ROW_DATA).withIndex()) {
             if (index in 3..18) {
-                data.add(CovidDataSet(
+                data.add(CovidDataSet(now.toString(),
                         it.child(REGION_INDEX).text(),
-                        it.child(NEW_CASES_INDEX).textNumeric(),
-                        it.child(TOTAL_CASES_INDEX).textNumeric(),
-                        it.child(DEATHS_INDEX).textNumeric())
+                        it.child(NEW_CASES_INDEX).textAsNumber(),
+                        it.child(TOTAL_CASES_INDEX).textAsNumber(),
+                        it.child(DEATHS_INDEX).textAsNumber())
                 )
             }
         }

@@ -19,10 +19,10 @@ class MinsalDataScraperTest {
     @Test
     fun `It scrapes correctly data type for rows`() {
         val list = scraper.fetchNewData()
-        list.forEach { (_, newCases, totalCases, deaths) ->
-            assertDoesNotThrow { newCases.toInt() }
-            assertDoesNotThrow { totalCases.toInt() }
-            assertDoesNotThrow { deaths.toInt() }
+        list.forEach { (_, _, newCases, totalCases, deaths) ->
+            assertDoesNotThrow { newCases / 1 }
+            assertDoesNotThrow { totalCases / 1 }
+            assertDoesNotThrow { deaths / 1 }
         }
     }
 

@@ -2,7 +2,8 @@ package dev.yamil.coronavirusapi
 
 import org.jsoup.nodes.Element
 
-fun Element.textNumeric(): String {
+fun Element.textAsNumber(): Long {
     val text = text()
-    return text.replace("[,.]".toRegex(), "")
+    val canConvert = text.replace("[,.]".toRegex(), "")
+    return canConvert.toLong()
 }

@@ -4,4 +4,4 @@ import org.springframework.cloud.gcp.data.datastore.repository.DatastoreReposito
 import org.springframework.stereotype.Repository
 
 @Repository
-interface CovidRepository : DatastoreRepository<CovidData, String>
+interface CovidRepository : DatastoreRepository<CovidDataSet, String>

@@ -1,5 +1,5 @@
 GCP_GOOGLE_APPLICATION_CREDENTIALS:=${HOME}/.config/gcloud/application_default_credentials.json
-GCP_ROJECT_ID:=$(shell cat $(GCP_GOOGLE_APPLICATION_CREDENTIALS) | grep project_id | cut -d ":" -f 2 | tr -d '\", ')
+GCP_PROJECT_ID:=$(shell cat $(GCP_GOOGLE_APPLICATION_CREDENTIALS) | grep project_id | cut -d ":" -f 2 | tr -d '\", ')
 
 docker-assemble:
 	docker run --rm       \
@@ -26,7 +26,7 @@ docker-run-dev: docker-assemble docker-build-image
 		-p 5005:5005 \
 		-v $(GCP_GOOGLE_APPLICATION_CREDENTIALS):/home/.config/gcloud/adc.json 	\
 		-e GOOGLE_APPLICATION_CREDENTIALS="/home/.config/gcloud/adc.json"	\
-		-e PROJECT_ID="$(GCP_ROJECT_ID)"	\
+		-e PROJECT_ID="$(GCP_PROJECT_ID)"	\
 		-e SPRING_PROFILES_ACTIVE="dev" 	\
 		-e JAVA_OPTS="-Xdebug -Xrunjdwp:transport=dt_socket,address=5005,server=y,suspend=n"	\
 		coronavirus-api
