@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 
 class MinsalDataScraperTest {
 
-    var scraper: MinsalDataScraper = MinsalDataScraper()
+    private var scraper: MinsalDataScraper = MinsalDataScraper()
 
     @Test
     fun `It scrapes correctly data for all regions`() {

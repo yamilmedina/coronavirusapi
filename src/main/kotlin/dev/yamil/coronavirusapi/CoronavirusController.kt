@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.RequestHeader
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import java.time.LocalDate
@@ -20,7 +21,7 @@ class CoronavirusController @Autowired constructor(private val covidRepository: 
     }
 
     @GetMapping("/today")
-    fun fetchAllData(): ResponseEntity<List<CovidDataSet>> {
+    fun fetchAllDataForTodayOrLastRecords(): ResponseEntity<List<CovidDataSet>> {
         var lastRecords = LocalDate.now()
         val hasRecords = covidRepository.existsByDateEquals(lastRecords.toString())
 
@@ -30,6 +31,13 @@ class CoronavirusController @Autowired constructor(private val covidRepository: 
 
         val list = covidRepository.findByDateEqualsOrderByDateDesc(lastRecords.toString())
         return ResponseEntity(list, HttpStatus.OK)
+    }
+
+    @GetMapping("/update-records")
+    fun updateWithNewRecords(@RequestHeader("X-Client-Id") clientId: String): ResponseEntity<Any> {
+        val newData = minsalDataScraper.fetchNewData()
+        covidRepository.saveAll(newData)
+        return ResponseEntity(HttpStatus.OK)
     }
 
 }
