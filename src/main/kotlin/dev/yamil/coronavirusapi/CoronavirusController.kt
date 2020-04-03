@@ -34,7 +34,14 @@ class CoronavirusController @Autowired constructor(private val covidRepository: 
     }
 
     @GetMapping("/update-records")
-    fun updateWithNewRecords(@RequestHeader("X-Client-Id") clientId: String): ResponseEntity<Any> {
+    fun updateWithNewRecords(@RequestHeader("X-Appengine-Cron") isAppengineClient: Boolean): ResponseEntity<Any> {
+        return when (isAppengineClient) {
+            true -> fetchAndSaveNewDailyRecords()
+            false -> ResponseEntity(HttpStatus.FORBIDDEN)
+        }
+    }
+
+    private fun fetchAndSaveNewDailyRecords(): ResponseEntity<Any> {
         val newData = minsalDataScraper.fetchNewData()
         covidRepository.saveAll(newData)
         return ResponseEntity(HttpStatus.OK)

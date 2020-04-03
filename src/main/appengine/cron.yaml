@@ -1,0 +1,5 @@
+cron:
+  - description: "get and store daily new covid records"
+    url: /api/v1/coronavirus/update-records
+    schedule: every 1 hours from 13:00 to 15:00
+    timezone: America/Santiago
