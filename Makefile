@@ -33,3 +33,6 @@ docker-run-dev: docker-assemble docker-build-image
 
 gae-deploy:
 	./gradlew appengineDeploy
+
+gae-deploy-crons:
+	./gradlew appengineDeployCron

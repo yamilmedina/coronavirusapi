@@ -37,6 +37,8 @@ jobs:
 
       - run: make gae-deploy
 
+      - run: make gae-deploy-crons
+
 workflows:
   version: 2
 
