@@ -16,7 +16,7 @@ También sirve como ejercicio real para experimentar con los servicios de la inf
 - [x] Endpoints básicos funcionales con scraper. 
 - [x] Dockerizacion de servicio. 
 - [x] Habilitar CI/CD para el proyecto con CircleCI. 
-- [ ] Crear proceso mediante pub/sub? + cloud functions? para actualizar registros diarios. 
+- [x] Crear proceso mediante pub/sub? + cloud functions? para actualizar registros diarios. 
 - [ ] Agregar capa de caché para disminuir consultas a Datastore. 
 - [ ] Seguridad para endpoints sensibles. 
 - [ ] Swagger doc para endpoints. 
