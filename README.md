@@ -1,5 +1,5 @@
 # Covid-19 API
-[![CircleCI](https://circleci.com/gh/yamilmedina/coronavirusapi/tree/master.svg?style=svg&circle-token=4259c346ba69eb646248ad392ee493bfb8f1a9b2)](https://circleci.com/gh/yamilmedina/coronavirusapi/tree/master)
+[![CircleCI](https://circleci.com/gh/yamilmedina/coronavirusapi.svg?style=shield)](https://circleci.com/gh/yamilmedina/coronavirusapi)
 
 `Covid-19 API` Habilita API REST para la recolección de datos (mediante scraping del historico de datos del Minsal) de las personas infectadas por el virus en Chile.
 También sirve como ejercicio real para experimentar con los servicios de la infra GCP.
@@ -7,8 +7,8 @@ También sirve como ejercicio real para experimentar con los servicios de la inf
 ## Endpoints
 
 
-* Lista de último reporte: GET https://coronavirus-app-271721.appspot.com/api/v1/coronavirus/today
-* Lista histórica: GET https://coronavirus-app-271721.appspot.com/api/v1/coronavirus
+* Lista de último reporte: GET https://coronaviruscl.yamil.dev/api/v1/coronavirus/today
+* Lista histórica: GET https://coronaviruscl.yamil.dev/api/v1/coronavirus
 
 ## Pendientes:
 
