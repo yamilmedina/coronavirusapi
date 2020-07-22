@@ -6,9 +6,7 @@ También sirve como ejercicio real para experimentar con los servicios de la inf
 
 ## Endpoints
 
-
-* Lista de último reporte: GET https://coronaviruscl.yamil.dev/api/v1/coronavirus/today
-* Lista histórica: GET https://coronaviruscl.yamil.dev/api/v1/coronavirus
+- DEPRECATED
 
 ## Pendientes:
 
