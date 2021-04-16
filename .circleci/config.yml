@@ -35,9 +35,9 @@ jobs:
 
       - checkout
 
-      - run: make gae-deploy
+      - run: echo 'hola'
 
-      - run: make gae-deploy-crons
+      - run: echo 'chao'
 
 workflows:
   version: 2
