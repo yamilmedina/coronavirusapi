@@ -24,7 +24,7 @@ jobs:
 
     steps:
       - when:
-        condition: << pipeline.parameters.deploy_to_dev >>
+        condition: << pipeline.parameters.welcome >>
         steps:
           - run: echo 'welcome to the show'
       
