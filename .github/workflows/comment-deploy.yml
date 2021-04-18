@@ -34,9 +34,9 @@ jobs:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
       - name: trigger circle ci pipeline
-        id: curl-circle-ci
+        id: curl_circle_ci
         run: |
-          curl -X POST -u ${{ secrets.CIRCLE_CI_TOKEN }}: -H "Content-Type: application/json" -H "Accept: application/json" \
+          curl -X POST -u ${{ secrets.CIRCLE_CI_TOKEN }}: -H "Content-Type: application/json" -H "Accept: application/json" --silent -w %{stdout} \
           -d '{"branch": "${{ fromJson(steps.get_pull_request_ref.outputs.data).head.ref }}", "parameters": {"deploy_to_dev": true}}' \
           https://circleci.com/api/v2/project/gh/yamilmedina/coronavirusapi/pipeline
 
@@ -50,6 +50,6 @@ jobs:
           body: |
             |
             Alpha release executing :rocket: see more info at: 
-            https://app.circleci.com/pipelines/github/${{ github.repository }}
+            https://app.circleci.com/pipelines/github/${{ github.repository }}/${{ fromJson(steps.curl_circle_ci.outputs).number }}/workflows/${{ fromJson(steps.curl_circle_ci.outputs).id }}
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
