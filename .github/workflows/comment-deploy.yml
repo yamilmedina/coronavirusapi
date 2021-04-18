@@ -9,9 +9,9 @@ jobs:
    runs-on: [ubuntu-latest]
    steps:
       - name: say hello
-       if: contains(github.event.comment.body, '/alpha')   
-       run: |
-         echo say hello there
+        if: contains(github.event.comment.body, '/alpha')   
+        run: |
+          echo say hello there
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
