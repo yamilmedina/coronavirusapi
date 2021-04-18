@@ -5,7 +5,20 @@
 version: 2
 jobs:
   welcome:
-    - run: echo 'welcome to the show'
+    docker:
+      - image: circleci/openjdk:11.0.3-jdk-stretch
+
+    working_directory: ~/repo
+
+    environment:
+      # Customize the JVM maximum heap limit
+      JVM_OPTS: -Xmx3200m
+      TERM: dumb
+
+    steps:
+
+      - run: echo 'welcome to the show'
+
   build:
     docker:
       - image: circleci/openjdk:11.0.3-jdk-stretch
