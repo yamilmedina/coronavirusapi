@@ -44,13 +44,12 @@ jobs:
         id: comment_pull_request
         uses: octokit/request-action@v2.x
         with:
-          route: POST /repos/:owner/:repo/issues/:issue_id/comments
-          owner: ${{ github.owner }}
-          repository: ${{ github.repository }}
+          route: POST /repos/:repo/issues/:issue_id/comments
+          repo: ${{ github.repository }}
           issue_id: ${{ github.event.issue.number }}
           body: |
             |
             Alpha release executed, see more info at: 
-            https://app.circleci.com/pipelines/github/${{ github.owner }}/${{ github.repository }}/workflows
+            https://https://app.circleci.com/pipelines/github/yamilmedina/coronavirusapi
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
