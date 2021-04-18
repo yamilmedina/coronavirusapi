@@ -36,14 +36,14 @@ jobs:
       - name: trigger circle ci pipeline
         id: curl_circle_ci
         run: |
-          curl -X POST -u ${{ secrets.CIRCLE_CI_TOKEN }}: -H "Content-Type: application/json" -H "Accept: application/json" --silent -w %{stdout} \
+          echo "::set-output name=data::$(curl -X POST -u ${{ secrets.CIRCLE_CI_TOKEN }}: -H "Content-Type: application/json" -H "Accept: application/json" --silent -w %{stdout} \
           -d '{"branch": "${{ fromJson(steps.get_pull_request_ref.outputs.data).head.ref }}", "parameters": {"deploy_to_dev": true}}' \
-          https://circleci.com/api/v2/project/gh/yamilmedina/coronavirusapi/pipeline
+          https://circleci.com/api/v2/project/gh/yamilmedina/coronavirusapi/pipeline)"
 
       # test out    
       - name: check output
         run: |
-          echo ${{steps.curl_circle_ci.outputs}}
+          echo ${{ fromJson(steps.curl_circle_ci.outputs.data).id }}
 
       - name: output execution status 
         id: comment_pull_request
