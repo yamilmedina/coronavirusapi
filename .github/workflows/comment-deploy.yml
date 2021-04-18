@@ -38,7 +38,7 @@ jobs:
         run: |
           curl -X POST -H "Content-Type: application/json" -H "Accept: application/json" \
           -d '{"branch": "${{ fromJson(steps.get_pull_request_ref.outputs.data).head.ref }}", "parameters": {"deploy_to_dev": true}}' \
-          "https://circleci.com/api/v2/project/gh/yamilmedina/coronavirusapi/pipeline?circle-token=${{ secrets.CIRCLE_CI_TOKEN }}" 
+          https://circleci.com/api/v2/project/gh/yamilmedina/coronavirusapi/pipeline?circle-token=${{ secrets.CIRCLE_CI_TOKEN }}
 
       - name: output execution status 
         id: comment_pull_request
