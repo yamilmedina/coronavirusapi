@@ -18,9 +18,9 @@ jobs:
     steps:
       - checkout
 
-      - run: gradle dependencies
+      - run: echo 'hola'
 
-      - run: gradle test
+      - run: echo 'chaoo'
 
   deploy:
     docker:

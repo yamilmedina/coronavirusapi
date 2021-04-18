@@ -1,24 +1,14 @@
+name: pull request comment
 on:
-  issue_comment:
-    types: [created]
-jobs:
-  deploy-alpha:
-    name: Execute deploy to alpha for pull request comments with rocket
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Run list 
-        run: ls -la
-    
-    
-    # if: github.event.issue.pull_request != '' && contains(github.event.comment.body, 'gogogo')
-    # steps:
-    #   - uses: actions/checkout@v2
-    #   - uses: actions/setup-ruby@v1
-    #     with:
-    #       ruby-version: '2.7.2'
-    #   - uses: maierj/fastlane-action@v2.0.1
-    #     with:
-    #       lane: 'circleci_deploy_alpha'
-    #       subdirectory: 'fastlane'
+  issue_comment:                                     
+    types: [created, edited, deleted]
 
+jobs:
+ deploy-alpha:
+   if: contains(github.event.comment.html_url, '/pull/')    # check if the comments come from pull request, exclude those from issue.
+   runs-on: [ubuntu-latest]
+   steps:
+     - name: say hello
+       if: contains(github.event.comment.body, '/alpha')   # check the comment if it contains the keywords
+       run: |
+         echo say hello
