@@ -20,8 +20,10 @@ jobs:
       - unless:
           condition: << pipeline.parameters.deploy_to_dev >> # by default this is triggered
           steps:
-            - run: |
-              echo hola build
+            - run: 
+              name: run build
+              command: |
+                echo hola build
 
   deploy_to_dev:
     executor: node-executor
@@ -30,8 +32,10 @@ jobs:
       - when:
           condition: << pipeline.parameters.deploy_to_dev >> # this would be triggered when you pass the parameter value via API
           steps:
-            - run: | 
-              echo hola deploy
+            - run: 
+              name: run deploy
+              command: |
+                echo hola deploy
 
 workflows:
   version: 2
