@@ -2,7 +2,14 @@
 #
 # Check https://circleci.com/docs/2.0/language-java/ for more details
 #
-version: 2
+version: 2.1
+
+parameters:
+  welcome:
+    type: boolean
+    default: false
+
+
 jobs:
   welcome:
     docker:
@@ -16,8 +23,11 @@ jobs:
       TERM: dumb
 
     steps:
-
-      - run: echo 'welcome to the show'
+      - when:
+        condition: << pipeline.parameters.deploy_to_dev >>
+        steps:
+          - run: echo 'welcome to the show'
+      
 
   build:
     docker:
