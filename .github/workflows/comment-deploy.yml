@@ -5,11 +5,11 @@ on:
 
 jobs:
  deploy-alpha:
-   if: contains(github.event.comment.html_url, '/pull/')    # check if the comments come from pull request, exclude those from issue.
+   if: contains(github.event.comment.html_url, '/pull/')  
    runs-on: [ubuntu-latest]
    steps:
       - name: say hello
-       if: contains(github.event.comment.body, '/alpha')   # check the comment if it contains the keywords
+       if: contains(github.event.comment.body, '/alpha')   
        run: |
          echo say hello there
       - uses: actions/checkout@v2
