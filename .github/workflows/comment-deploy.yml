@@ -49,7 +49,8 @@ jobs:
           issue_id: ${{ github.event.issue.number }}
           body: |
             |
-            Alpha release in progress :rocket: see more info at: 
-            https://app.circleci.com/pipelines/github/${{ github.repository }}/${{ fromJson(steps.curl_circle_ci.outputs.data).number }}/workflows/${{ fromJson(steps.curl_circle_ci.outputs.data).id }}
+            Alpha release in progress :rocket: see more info at: https://app.circleci.com/pipelines/github/${{ github.repository }}
+            - Execution number: ${{ fromJson(steps.curl_circle_ci.outputs.data).number }}
+            - Branch: ${{ fromJson(steps.get_pull_request_ref.outputs.data).head.ref }}
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
