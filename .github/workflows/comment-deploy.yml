@@ -1,27 +1,21 @@
-name: pull request comment
+name: pull request alpha deploy
 on:
-  issue_comment:                                     
-    types: [created, edited, deleted]
+  issue_comment:
+    types: [created, edited]
 
 jobs:
- deploy-alpha:
-   if: contains(github.event.comment.html_url, '/pull/')  
-   runs-on: [ubuntu-latest]
-   steps:
-      - name: say hello
-        if: contains(github.event.comment.body, '/alpha')   
+  deploy-alpha:
+    if: contains(github.event.comment.html_url, '/pull/') && contains(github.event.comment.body, '/alpha')
+    runs-on: [ubuntu-latest]
+    steps:
+      - name: Starting alpha deploy workflow
         run: |
-          echo say hello there
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - name: a simple circle-ci deployment trigger
+          echo Starting alpha deploy for PR ${{ github.head_ref }}
+      - name: Trigger workflow
         id: curl-circle-ci
-        uses: Open-Source-Contrib/circle-ci-trigger-action@latest
-        with:
-          circle_ci_token: ${{ secrets.CIRCLE_CI_TOKEN }}
-          circle_ci_job: welcome
-          circle_ci_project_url: ${{ github.event.pull_request.head.ref }}
-      # Use the output from the `hello` step.
-      - name: Get the output response
+        run: |
+          curl -d '{"branch": "${{ github.head_ref }}", "parameters": {"deploy_to_dev": true}}' \
+          https://circleci.com/api/v2/project/github/yamilmedina/coronavirusapi/pipeline?circle-token=${{ secrets.CIRCLECI_TOKEN }} \
+          -H 'Content-Type: application/json' -H 'Accept: application/json'
+      - name: Ending alpha deploy workflow with response
         run: echo "The response was ${{ steps.curl-circle-ci.outputs.response }}"
