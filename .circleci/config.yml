@@ -4,6 +4,8 @@
 #
 version: 2
 jobs:
+  welcome:
+    - run: echo 'welcome to the show'
   build:
     docker:
       - image: circleci/openjdk:11.0.3-jdk-stretch
@@ -44,6 +46,7 @@ workflows:
 
   build-deploy:
     jobs:
+      - welcome  
       - build
       - deploy:
           requires:
