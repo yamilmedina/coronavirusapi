@@ -1,66 +1,39 @@
-# Java Gradle CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-java/ for more details
-#
-version: 2.1
+# config.yml
 
+version: 2.1
+executors:
+  node-executor:
+    docker:
+      - image: circleci/node:10.8
+
+# Set parameter here
 parameters:
-  welcome:
+  deploy_to_dev:
     type: boolean
     default: false
 
 jobs:
-  welcome:
-    docker:
-      - image: circleci/openjdk:11.0.3-jdk-stretch
-    working_directory: ~/repo
+  build:
+    executor: node-executor
+    steps:
+      - checkout
+      - unless:
+          condition: << pipeline.parameters.deploy_to_dev >> # by default this is triggered
+          steps:
+            - run: # build
+  deploy_to_dev:
+    executor: node-executor
     steps:
       - checkout
       - when:
-        condition: << pipeline.parameters.welcome >>
-        steps:
-          - run: echo 'welcome to the show'
-
-  build:
-    docker:
-      - image: circleci/openjdk:11.0.3-jdk-stretch
-
-    working_directory: ~/repo
-
-    environment:
-      # Customize the JVM maximum heap limit
-      JVM_OPTS: -Xmx3200m
-      TERM: dumb
-
-    steps:
-      - checkout
-      - unless:
-        condition: << pipeline.parameters.welcome >>
-        steps:
-          - run: echo 'hola'
-          - run: echo 'chaoo'
-
-  deploy:
-    docker:
-      - image: google/cloud-sdk
-    working_directory: ~/repo
-    steps:
-      - unless:
-        condition: << pipeline.parameters.welcome >>
-        steps:
-          - checkout
-          - run: echo 'hola'
-          - run: echo 'chao'
+         condition: << pipeline.parameters.deploy_to_dev >> # this would be triggered when you pass the parameter value via API
+         steps:
+           - run: echo 'hi, running your remote job'
+                  # do deploy to dev
 
 workflows:
   version: 2
   build-deploy:
     jobs:
-      - welcome  
       - build
-      - deploy:
-          requires:
-            - build
-          filters:
-            branches:
-              only: master
+      - deploy_to_dev
