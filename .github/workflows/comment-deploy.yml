@@ -8,7 +8,20 @@ jobs:
    if: contains(github.event.comment.html_url, '/pull/')    # check if the comments come from pull request, exclude those from issue.
    runs-on: [ubuntu-latest]
    steps:
-     - name: say hello
+      - name: say hello
        if: contains(github.event.comment.body, '/alpha')   # check the comment if it contains the keywords
        run: |
-         echo say hello
+         echo say hello there
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: a simple circle-ci deployment trigger
+        id: curl-circle-ci
+        uses: Open-Source-Contrib/circle-ci-trigger-action@latest
+        with:
+          circle_ci_token: ${{ secrets.CIRCLE_CI_TOKEN }}
+          circle_ci_job: welcome
+          circle_ci_project_url: ${{ github.event.pull_request.head.ref }}
+      # Use the output from the `hello` step
+      - name: Get the output response
+        run: echo "The response was ${{ steps.curl-circle-ci.outputs.response }}"
