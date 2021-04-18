@@ -49,7 +49,7 @@ jobs:
           issue_id: ${{ github.event.issue.number }}
           body: |
             |
-            Alpha release executed, see more info at: 
-            https://https://app.circleci.com/pipelines/github/yamilmedina/coronavirusapi
+            Alpha release executing :rocket: see more info at: 
+            https://app.circleci.com/pipelines/github/${{ github.repository }}
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
