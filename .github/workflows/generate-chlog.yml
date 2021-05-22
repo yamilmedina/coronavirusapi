@@ -4,15 +4,18 @@ on:
     branches:
       - 'release/**'
   pull_request:
+    types: [opened]
+    branches:
+      - 'master'
   
 jobs:
   chlog:
     runs-on: ubuntu-latest
-    if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }}
+    if: ${{ !contains(github.event.head_commit.message, '[skip ci]') && github.event_name != 'pull_request' }}
     steps:
       - uses: actions/checkout@v2
       - name: Generate changelog
-        run: echo "aaaaaaaaa \n" >> chlog.md
+        run: echo date >> chlog.md
       - name: Push updated changelog
         run: |
           git config --global user.name 'A Bot'
