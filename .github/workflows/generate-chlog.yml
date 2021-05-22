@@ -1,9 +1,10 @@
 name: generate new changelog
 on:
   push:
-  - release/**
+    branches:
+      - 'release/**'
   pull_request:
-
+  
 jobs:
   chlog:
     runs-on: ubuntu-latest
