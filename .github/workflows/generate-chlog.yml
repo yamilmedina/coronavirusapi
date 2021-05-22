@@ -1,20 +1,18 @@
 name: generate new changelog
 on:
-  push:
-    branches:
-    - 'release/**'
   pull_request:
     branches:
-    - master
+    - 'release/**'
+    - 'hotfix/**'
 
 jobs:
-  report:
+  chlog:
     runs-on: ubuntu-latest
     if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }}
     steps:
       - uses: actions/checkout@v2
       - name: Generate changelog
-        run: echo "aaaaaaaaan" > chlog.md
+        run: echo "aaaaaaaaa \n" >> chlog.md
       - name: Push updated changelog
         run: |
           git config --global user.name 'A Bot'
