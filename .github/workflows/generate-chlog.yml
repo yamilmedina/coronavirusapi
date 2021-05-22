@@ -1,9 +1,11 @@
 name: generate new changelog
 on:
-  pull_request:
+  push:
     branches:
-    - 'release/**'
-    - 'hotfix/**'
+      - 'release/**'
+      - 'hotfix/**'
+  pull_request:
+    branches: [master]
 
 jobs:
   chlog:
