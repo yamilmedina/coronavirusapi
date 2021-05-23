@@ -1,6 +1,1 @@
-aaaaaaaaan
-aaaaaaaaa \n
-aaaaaaaaa \n
-date
-date
-date
+VERSION_NAME=99.0.1
