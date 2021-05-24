@@ -10,11 +10,11 @@ jobs:
     if: ${{ contains(github.event.head_commit.message, 'Merge pull request') }}
     steps:
       - uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - name: Run node file
+        run: node run.js     
       - name: Set Tag version
-        run: echo "NEW_TAG_VERSION=$(cat chlog.md | grep VERSION_NAME | cut -d'=' -f2)" >> $GITHUB_ENV
-      - name: Push new release Tag
-        run: |
-          git config --global user.name 'A Bot'
-          git config --global user.email 'abot@users.noreply.github.com'
-          git tag $NEW_TAG_VERSION
-          git push origin $NEW_TAG_VERSION
+        run: cat chlog*.md
