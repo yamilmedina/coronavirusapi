@@ -7,7 +7,7 @@ const latestTag = child.execSync('git describe --tags $(git rev-list --tags --ma
 start = function () {
     let newVersion = fs.readFileSync("chlog.md", ENCODING_FORMAT).split("=")[1]
     console.log("Latest Tag: " + latestTag)
-    console.log("newVersion Tag: " + newVersion)    
+    console.log("New Version Tag: " + newVersion)    
 
     fs.writeFileSync("chlog-" + newVersion + ".md", `${new Date()}`);
 };
