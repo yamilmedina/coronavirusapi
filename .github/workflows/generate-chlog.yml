@@ -18,7 +18,7 @@ jobs:
       - name: Initialize bot git config
         run: |
           git config user.name 'Bender Bot'
-          git config user.email 'bender@users.noreply.github.com'
+          git config user.email 'actions-user@users.noreply.github.com'
       - name: Bump version name
         run: sed -ie "s/^VERSION_NAME=.*/VERSION_NAME=${{ github.event.inputs.versionName }}/" chlog.md  
       - name: Use Node.js # start generate chlog
