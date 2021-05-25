@@ -43,21 +43,23 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           head: release/${{ github.event.inputs.versionName }}
           base: master
-          title: 🚀 Release/${{ github.event.inputs.versionName }} into master 🚀
+          title: Release/${{ github.event.inputs.versionName }} into master 🚀
           reviewers: ${{ github.event.issue.user.login }}
           body: |
               Hi human! This PR was created in response workflow running.
               I've updated the version name for the new release: ${{ steps.make-commit.outputs.commit }}.  
+              See more at https://github.com/yamilmedina/coronavirusapi/blob/release/${{ github.event.inputs.versionName }}/README.md  
       - name: Create PR into devel
         uses: thomaseizinger/create-pull-request@1.0.0
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           head: release/${{ github.event.inputs.versionName }}
           base: devel
-          title: 🚀 Release/${{ github.event.inputs.versionName }} into devel 🚀
+          title: Release/${{ github.event.inputs.versionName }} into devel 🚀
           reviewers: ${{ github.event.issue.user.login }}
           body: |
               Hi human! This PR was created in response workflow running.
-              I've updated the version name for the new release: ${{ steps.make-commit.outputs.commit }}.            
+              I've updated the version name for the new release: ${{ steps.make-commit.outputs.commit }}. 
+              See more at https://github.com/yamilmedina/coronavirusapi/blob/release/${{ github.event.inputs.versionName }}/README.md         
 
         
