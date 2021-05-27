@@ -1,4 +1,6 @@
-# Covid-19 API
+# DEPRECATED PROJECT
+
+## Covid-19 API
 [![CircleCI](https://circleci.com/gh/yamilmedina/coronavirusapi.svg?style=shield)](https://circleci.com/gh/yamilmedina/coronavirusapi)
 
 `Covid-19 API` Habilita API REST para la recolección de datos (mediante scraping del historico de datos del Minsal) de las personas infectadas por el virus en Chile.
