@@ -22,7 +22,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           tag_name: $NEW_TAG_VERSION
-          body_path: chlogs/$NEW_TAG_VERSION.md
+          body_path: chlogs/${NEW_TAG_VERSION}.md
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
