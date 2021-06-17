@@ -1,0 +1,27 @@
+name: generate new release tag
+on:
+  push:
+    branches:
+      - 'master'
+
+jobs:
+  gen-new-tag:
+    runs-on: ubuntu-latest
+    if: ${{ contains(github.event.head_commit.message, 'Merge pull request') }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set Tag version
+        run: echo "NEW_TAG_VERSION=$(cat chlog.md | grep VERSION_NAME | cut -d'=' -f2)" >> $GITHUB_ENV
+      - name: Push new release Tag
+        run: |
+          git config --global user.name 'Bender the bot'
+          git config --global user.email 'actions-user@users.noreply.github.com'
+          git tag $NEW_TAG_VERSION
+          git push origin $NEW_TAG_VERSION
+      - name: Create Github Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: $NEW_TAG_VERSION
+          body_path: chlogs/$NEW_TAG_VERSION.md
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
