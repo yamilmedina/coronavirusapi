@@ -21,4 +21,3 @@ También sirve como ejercicio real para experimentar con los servicios de la inf
 - [ ] Seguridad para endpoints sensibles. 
 - [ ] Swagger doc para endpoints. 
 - [ ] Arquitectura en Compute Engine con Kubernetes o Swarm. 
- 
