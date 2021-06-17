@@ -25,4 +25,3 @@ jobs:
           body_path: chlogs/$NEW_TAG_VERSION.md
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          
